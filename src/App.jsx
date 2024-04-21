@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { fetchImages } from "./pictures-api";
+
 import Loader from "../src/components/Loader/Loader";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import SearchBar from "./components/SearchBar/SearchBar";
@@ -43,7 +44,6 @@ function App() {
 
   return (
     <>
-      <h1>Test</h1>
       <SearchBar onSubmit={handleSubmit} />
       {error && (
         <ErrorMessage
