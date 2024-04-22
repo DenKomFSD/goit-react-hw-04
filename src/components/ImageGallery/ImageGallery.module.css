@@ -1,0 +1,29 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(150px, 1fr)
+  ); /* 4 изображения в ряд */
+  gap: 10px; /* Промежуток между изображениями */
+  list-style: none; /* Убираем маркеры списка */
+  padding: 0; /* Убираем отступы */
+}
+
+.img2 {
+  width: 100%; /* Занимать всю доступную ширину */
+  height: auto; /* Автоматическая высота для сохранения пропорций */
+  display: block; /* Убираем возможное пространство под изображения */
+  border-radius: 5px; /* Добавляем скругленные углы для эффекта квадратных изображений */
+}
+
+/* .img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.img2 {
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+} */

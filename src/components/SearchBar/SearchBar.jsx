@@ -8,17 +8,17 @@ export default function SearchBar({ onSubmit }) {
     const form = event.target;
     const value = form.query.value;
     console.log(event.target.query);
-    if (!value.query) {
-      toast("Please enter search term!", {
+    if (!value) {
+      toast.error("Your search term is empty", {
         style: {
           color: "#ffffff",
-          backgroundColor: "#FF8C00",
+          backgroundColor: "red",
         },
       });
       return;
     }
     onSubmit(value);
-    form.reset();
+    // form.reset();
   };
   return (
     <header className={css.header}>
