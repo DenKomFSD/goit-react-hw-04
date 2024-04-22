@@ -1,19 +1,32 @@
 .container {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(150px, 1fr)
-  ); /* 4 изображения в ряд */
-  gap: 10px; /* Промежуток между изображениями */
-  list-style: none; /* Убираем маркеры списка */
-  padding: 0; /* Убираем отступы */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  align-items: center;
+  margin-top: 70px;
 }
 
-.img2 {
-  width: 100%; /* Занимать всю доступную ширину */
-  height: auto; /* Автоматическая высота для сохранения пропорций */
-  display: block; /* Убираем возможное пространство под изображения */
-  border-radius: 5px; /* Добавляем скругленные углы для эффекта квадратных изображений */
+.container img {
+  object-fit: cover; /* Это свойство позволяет изображению занимать весь контейнер */
+  object-position: top; /* Это свойство выравнивает изображение по верхней части */
+}
+
+.img {
+  box-sizing: content-box;
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  object-fit: cover; /* Это свойство позволяет изображению занимать весь контейнер */
+  object-position: top; /* Это свойство выравнивает изображение по верхней части */
+  aspect-ratio: 1 / 0.55;
+  transition: transform 250ms ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.img:hover {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 /* .img {

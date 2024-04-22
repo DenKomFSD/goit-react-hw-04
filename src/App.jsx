@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { fetchImages } from "./pictures-api";
-
 import Loader from "../src/components/Loader/Loader";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import { Toaster } from "react-hot-toast";
 import LoadMore from "./components/LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "./components/ImageModal/ImageModal";
 
 function App() {
   const [pics, setPics] = useState([]);
@@ -19,36 +19,27 @@ function App() {
   const [query, setQuery] = useState("");
   // page state
   const [page, setPage] = useState(1);
-  // useEffect(() => {
-  //   async function getImages() {
-  //     try {
-  //       setIsLoading(true);
-  //       const data = await fetchImages("cats");
-  //       setPics(data.results);
-  //     } catch (error) {
-  //       setError(true);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   }
+  // modal states
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalImageUrl, setModalImageUrl] = useState("");
+  // end of collection
+  const [endOfCollection, setEndOfCollection] = useState(false);
+  const [showLoadMore, setShowLoadMore] = useState(true);
 
-  //   getImages();
-  // }, []);
+  const openModal = (imageUrl) => {
+    setModalImageUrl(imageUrl);
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
 
   const handleSubmit = async (newQuery) => {
     setQuery(newQuery);
     setPage(1);
     setPics([]);
-
-    // try {
-    //   setIsLoading(true);
-    //   const data = await fetchImages(query);
-    //   setPics(data.results);
-    // } catch (error) {
-    //   setError(true);
-    // } finally {
-    //   setIsLoading(false);
-    // }
+    setEndOfCollection(false);
   };
 
   const handleLoadMore = () => {
@@ -56,14 +47,21 @@ function App() {
   };
 
   useEffect(() => {
+    //if no query
+    if (!query) {
+      return;
+    }
+    //http request continue
     async function getImages() {
       try {
-        if (!query) return;
         setIsLoading(true);
         const data = await fetchImages(query, page);
-        setPics((prevPics) => {
-          return [...prevPics, ...data.results];
-        });
+        if (data.results.length === 0) {
+          setEndOfCollection(true);
+          setShowLoadMore(false);
+        } else {
+          setPics((prevPics) => [...prevPics, ...data.results]);
+        }
       } catch (error) {
         setError(true);
       } finally {
@@ -81,10 +79,15 @@ function App() {
           message={"Failed to load images. Please try again later."}
         />
       )}
+      {pics.length > 0 && <ImageGallery pics={pics} openModal={openModal} />}
+      {showLoadMore && pics.length > 0 && <LoadMore onClick={handleLoadMore} />}
       {isLoading && <Loader isLoading={isLoading} />}
-      {pics.length > 0 && <ImageGallery pics={pics} />}
-      {pics.length > 0 && <LoadMore onClick={handleLoadMore} />}
-
+      <ImageModal
+        isOpen={modalIsOpen}
+        imageUrl={modalImageUrl}
+        onRequestClose={closeModal}
+      />
+      {endOfCollection && <p>No more images available.</p>}
       <Toaster position="top-right" />
     </>
   );
