@@ -4,12 +4,18 @@
   justify-content: center;
   gap: 24px;
   align-items: center;
-  margin-top: 70px;
+  /* margin-top: 70px; */
+  position: relative;
+  top: 70px;
+  padding: 10px;
+  border-radius: 4px;
+  background: rgba(160, 162, 185, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 .container img {
-  object-fit: cover; /* Это свойство позволяет изображению занимать весь контейнер */
-  object-position: top; /* Это свойство выравнивает изображение по верхней части */
+  object-fit: cover;
+  object-position: top;
 }
 
 .img {
@@ -17,8 +23,8 @@
   border: none;
   border-radius: 5px;
   overflow: hidden;
-  object-fit: cover; /* Это свойство позволяет изображению занимать весь контейнер */
-  object-position: top; /* Это свойство выравнивает изображение по верхней части */
+  object-fit: cover;
+  object-position: top;
   aspect-ratio: 1 / 0.55;
   transition: transform 250ms ease-in-out;
   display: flex;

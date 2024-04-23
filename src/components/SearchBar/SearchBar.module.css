@@ -1,15 +1,19 @@
 header {
-  background-color: #3043e9;
-  padding: 14px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #2c2f48;
+  padding: 20px;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 10px;
+  left: 20px;
   z-index: 1000;
-  width: 100%;
+  width: 95%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 20px;
+  /* border: 1px solid #01b7c5; */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.5);
 }
 .formik {
   display: flex;
@@ -18,27 +22,48 @@ header {
 }
 
 .inputs {
-  padding: 8px 8px 8px 40px;
+  padding: 8px 8px 8px 50px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   margin-right: 10px;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
   width: 300px;
-  color: black;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(
+    180deg,
+    rgba(46, 51, 90, 0.3) 0%,
+    rgba(28, 27, 51, 0.3) 100%
+  );
 }
 
 .btn {
-  width: 40px;
-  height: 40px;
-  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: transparent; */
   color: rgb(15, 15, 15);
-  border: none;
-  border-radius: 50%;
+  /* border: none; */
+  /* border-radius: 50%; */
   cursor: pointer;
   position: absolute;
-  left: -8px;
+  left: 2px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: radial-gradient(
+      70.71% 70.71% at 50% 50%,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    rgba(255, 255, 255, 0.04);
 }
 .icon {
   width: 20px;
   height: 20px;
+  color: aliceblue;
 }
